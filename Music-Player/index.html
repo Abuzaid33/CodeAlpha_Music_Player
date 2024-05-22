@@ -17,7 +17,7 @@
                <div class="track-art"></div>
                <div class="track-name">Track Name</div>
                <div class="track-artist">Track Artist</div>
-               <div class="track-genre">Track Genre</div> <!-- Added genre -->
+               <div class="track-genre">Track Genre</div>
            </div>
 
            <div class="slider_container">
@@ -60,21 +60,20 @@
                 <span class="stroke"></span>
             </div>
 
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search for music...">
-                <select id="categorySelect">
-                    <option value="all">All</option>
-                    <option value="artist">Artist</option>
-                    <option value="genre">Genre</option>
-                </select>
-                <button onclick="searchMusic()">Search</button>
-            </div>
-
             <button id="togglePlaylistBtn" onclick="togglePlaylist()">Show Playlist</button>
-            <div id="playlistContainer" class="playlist-container">
-                <ul id="playlist" class="playlist"></ul>
-            </div>
        </div>
+   </div>
+   <div id="playlistContainer" class="playlist-container hidden">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for music...">
+            <select id="categorySelect">
+                <option value="all">All</option>
+                <option value="artist">Artist</option>
+                <option value="genre">Genre</option>
+            </select>
+            <button onclick="searchMusic()">Search</button>
+        </div>
+        <ul id="playlist" class="playlist"></ul>
    </div>
    <script src="script.js" defer></script>
 </body>

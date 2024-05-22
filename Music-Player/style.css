@@ -211,31 +211,50 @@ p {
   animation-delay: 0s;
 }
 
-.playlist {
-  margin-top: 20px;
+/* Playlist Button and Playlist */
+#togglePlaylistBtn {
+  background-color: #4286f4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#togglePlaylistBtn:hover {
+  background-color: #3774ff;
+}
+
+.playlist-container {
+  display: none;
   width: 100%;
+  padding: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  margin-top: 20px;
 }
 
-.playlist h3 {
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.playlist ul {
+.playlist {
+  margin-top: 10px;
+  padding: 0;
   list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
-.playlist ul li {
-  background: #ddd;
-  margin: 5px 0;
+.playlist li {
+  background-color: #eee;
   padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
-.playlist ul li:hover {
-  background: #bbb;
+.playlist li:hover {
+  background-color: #ddd;
 }
 
 .search-container {
@@ -244,7 +263,7 @@ p {
   margin-bottom: 10px;
 }
 
-#search-bar {
+#searchInput {
   width: 60%;
   padding: 10px;
   margin-right: 10px;
@@ -252,8 +271,46 @@ p {
   border: 1px solid #ccc;
 }
 
-#category-select {
+#categorySelect {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+.playlist-container {
+  display: none; /* Initially hide the playlist container */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  z-index: 999; /* Ensure the playlist container appears above other content */
+}
+
+.playlist-container .wrapper {
+  border: 1px solid transparent;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #ddd;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  height: 80%;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.playlist {
+  list-style: none;
+  padding: 0;
+}
+
+.playlist li {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.playlist li:hover {
+  background-color: #ddd;
 }

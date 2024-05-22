@@ -12,7 +12,7 @@ let volume_slider = document.querySelector('.volume_slider');
 let curr_time = document.querySelector('.current-time');
 let total_duration = document.querySelector('.total-duration');
 let wave = document.getElementById('wave');
-let randomIcon = document.querySelector('.fa-random');
+let randomIcon = document.querySelector('.randomActive');
 let curr_track = document.createElement('audio');
 
 let track_index = 0;
@@ -207,52 +207,21 @@ function searchMusic() {
     
     let filteredMusic;
     if (category === 'all') {
-        filteredMusic = music_list.filter(track => 
-            track.name.toLowerCase().includes(searchTerm) || 
-            track.artist.toLowerCase().includes(searchTerm) || 
-            track.genre.toLowerCase().includes(searchTerm)
-        );
-    } else if (category === 'artist') {
-        filteredMusic = music_list.filter(track => 
-            track.artist.toLowerCase().includes(searchTerm)
-        );
-    } else if (category === 'genre') {
-        filteredMusic = music_list.filter(track => 
-            track.genre.toLowerCase().includes(searchTerm)
-        );
-    }
-
-    if (filteredMusic.length > 0) {
-        // Clear existing playlist and populate with filtered music
-        playlist.innerHTML = '';
-        filteredMusic.forEach((track, index) => {
-            let listItem = document.createElement('li');
-            listItem.textContent = `${track.name} - ${track.artist}`;
-            listItem.setAttribute('data-index', index);
-            listItem.addEventListener('click', () => {
-                track_index = index;
-                loadTrack(track_index);
-                playTrack();
-            });
-            playlist.appendChild(listItem);
-        });
-    } else {
-        // Show a message if no matching music found
-        alert('No matching music found.');
-    }
+        filteredMusic = music_list.filter(track =>             track.name.toLowerCase().includes(searchTerm) || 
+        track.artist.toLowerCase().includes(searchTerm)
+    );
+} else if (category === 'artist') {
+    filteredMusic = music_list.filter(track => 
+        track.artist.toLowerCase().includes(searchTerm)
+    );
+} else if (category === 'genre') {
+    filteredMusic = music_list.filter(track => 
+        track.genre.toLowerCase().includes(searchTerm)
+    );
 }
 
-function filterByArtist(artist) {
-    let filteredMusic = music_list.filter(track => track.artist === artist);
-    updatePlaylist(filteredMusic);
-}
-
-function filterByGenre(genre) {
-    let filteredMusic = music_list.filter(track => track.genre === genre);
-    updatePlaylist(filteredMusic);
-}
-
-function updatePlaylist(filteredMusic) {
+if (filteredMusic.length > 0) {
+    // Clear existing playlist and populate with filtered music
     playlist.innerHTML = '';
     filteredMusic.forEach((track, index) => {
         let listItem = document.createElement('li');
@@ -265,4 +234,47 @@ function updatePlaylist(filteredMusic) {
         });
         playlist.appendChild(listItem);
     });
+} else {
+    // Show a message if no matching music found
+    alert('No matching music found.');
 }
+}
+
+function filterByArtist(artist) {
+let filteredMusic = music_list.filter(track => track.artist === artist);
+updatePlaylist(filteredMusic);
+}
+
+function filterByGenre(genre) {
+let filteredMusic = music_list.filter(track => track.genre === genre);
+updatePlaylist(filteredMusic);
+}
+
+function updatePlaylist(filteredMusic) {
+playlist.innerHTML = '';
+filteredMusic.forEach((track, index) => {
+    let listItem = document.createElement('li');
+    listItem.textContent = `${track.name} - ${track.artist}`;
+    listItem.setAttribute('data-index', index);
+    listItem.addEventListener('click', () => {
+        track_index = index;
+        loadTrack(track_index);
+        playTrack();
+    });
+    playlist.appendChild(listItem);
+});
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const togglePlaylistBtn = document.getElementById('togglePlaylistBtn');
+    const playlistContainer = document.getElementById('playlistContainer');
+
+    // Add event listener to the "Show Playlist" button
+    togglePlaylistBtn.addEventListener('click', function () {
+        // Toggle the display property of the playlist container
+        if (playlistContainer.style.display === 'none' || playlistContainer.style.display === '') {
+            playlistContainer.style.display = 'block';
+        } else {
+            playlistContainer.style.display = 'none';
+        }
+    });
+});
